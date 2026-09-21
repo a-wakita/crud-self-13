@@ -1,7 +1,7 @@
 <?php
 use App\Http\Controllers\CategoryController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\TaskController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,8 +18,12 @@ Route::get('/', function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/tasks', fn() => 'タスク一覧（準備中）')->name('tasks.index');
-    Route::get('/categories', fn() => 'カテゴリー一覧（準備中）')->name('categories.index');
+    // カテゴリーのCRUDルート
+    Route::resource('categories', CategoryController::class);
+
+    // タスクのCRUDルート（仮ルートから置き換え）
+    Route::resource('tasks', TaskController::class);
+
     Route::resource('categories', CategoryController::class);
 });
 
